@@ -1,0 +1,456 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[french]{babel}
+\usepackage[utf-8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+
+% Configuration listings
+\lstset{
+  language=SQL,
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{gray!10},
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{red},
+}
+
+\pagestyle{fancy}
+\lhead{USPV Judo}
+\chead{Dossier d'Analyse Technique}
+\rhead{Mehdi LAFAY}
+\rfoot{Page \thepage}
+
+\title{\textbf{Dossier d'Analyse Technique}\\
+{\large Site Web USPV Judo}}
+\author{Mehdi LAFAY\\
+BUT Informatique --- 2\textsuperscript{e} année\\
+IUT Belfort-Montbéliard}
+\date{Stage : 7 avril -- 5 juin 2026}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+% =====================================================
+\section{Introduction et Contexte}
+
+\subsection{Objectif du projet}
+Le site USPV Judo est la plateforme numérique de gestion et de promotion du club historique de judo de Pont-de-Roide-Vermondans. Le projet vise à :
+\begin{itemize}
+  \item Créer une présence web professionnelle et accessible
+  \item Mettre en place un système d'inscription et de gestion des adhérents
+  \item Permettre la gestion de l'agenda des séances et tournois
+  \item Assurer la sécurité des données personnelles (RGPD)
+\end{itemize}
+
+\subsection{Périmètre technique}
+\begin{tabular}{lp{10cm}}
+\toprule
+\textbf{Domaine} & \textbf{Technologie} \\
+\midrule
+Frontend & Nuxt 3 (Vue 3) + TailwindCSS \\
+Backend & Node.js (Nitro runtime) + Express middleware \\
+Base de données & PostgreSQL 14+ (24 tables) \\
+Sécurité & JWT + bcrypt + middleware CSRF \\
+Déploiement & VPS Linux + GitHub Actions CI/CD \\
+Versioning & Git / GitHub \\
+\bottomrule
+\end{tabular}
+
+% =====================================================
+\section{Architecture Générale}
+
+\subsection{Vue d'ensemble}
+\begin{verbatim}
+┌─────────────────────────────────────────┐
+│         Navigateur (Client)             │
+│         Nuxt 3 SPA (Vue 3)              │
+│         - Pages publiques               │
+│         - Formulaires réactifs          │
+│         - Gestion d'état (Pinia)        │
+└──────────────┬──────────────────────────┘
+               │ HTTPS / REST API
+┌──────────────▼──────────────────────────┐
+│      Serveur Nitro (Node.js)            │
+│      - Routes API (/api/...)            │
+│      - Middleware (JWT, CORS, CSRF)     │
+│      - Logique métier                   │
+│      - Sessions utilisateur             │
+└──────────────┬──────────────────────────┘
+               │ TCP/5432
+┌──────────────▼──────────────────────────┐
+│       PostgreSQL                        │
+│       - Familles (adhérents)            │
+│       - Inscriptions                    │
+│       - Sessions de judo                │
+│       - Tournois                        │
+└─────────────────────────────────────────┘
+\end{verbatim}
+
+\subsection{Modèle Client-Serveur}
+\begin{itemize}
+  \item \textbf{Client} : Application Nuxt 3 (SPA) exécutée dans le navigateur
+  \item \textbf{API} : Endpoints RESTful exposés par le serveur Nitro
+  \item \textbf{Base de données} : PostgreSQL centralisée, accessible uniquement par le serveur
+\end{itemize}
+
+% =====================================================
+\section{Détail des Composants}
+
+\subsection{Frontend (Nuxt 3 + Vue 3)}
+
+\subsubsection{Structure}
+\begin{lstlisting}[language=bash]
+nuxt-app/
+├── pages/                    # Pages publiques
+│   ├── index.vue            # Accueil
+│   ├── inscription.vue      # Formulaire d'inscription
+│   └── planning.vue         # Calendrier séances/tournois
+├── components/              # Composants réutilisables
+│   ├── InscriptionForm.vue
+│   ├── SessionCard.vue
+│   └── TournamentTable.vue
+├── composables/             # Logique métier réutilisable
+│   ├── useAuth.ts           # Authentification
+│   └── useFormValidation.ts # Validation formulaires
+├── stores/                  # État global (Pinia)
+│   ├── auth.ts              # Utilisateur courant
+│   └── sessions.ts          # Séances/tournois
+└── middleware/              # Middleware client
+    └── auth.ts              # Garde routes protégées
+\end{lstlisting}
+
+\subsubsection{Réactivité et State Management}
+\begin{itemize}
+  \item \textbf{Pinia} : Store global pour authentification et données session
+  \item \textbf{Composition API} : Logique réutilisable via composables
+  \item \textbf{TailwindCSS} : Framework CSS utilitaire pour design responsive
+\end{itemize}
+
+\subsection{Backend (Nitro / Express)}
+
+\subsubsection{Architecture}
+\begin{lstlisting}[language=bash]
+server/
+├── api/                    # Endpoints API
+│   ├── auth.ts            # Login / register
+│   ├── inscriptions/       # CRUD inscriptions
+│   ├── families/           # Gestion adhérents
+│   ├── sessions/           # Planning séances
+│   └── tournaments/        # Gestion tournois
+├── middleware/            # Middleware global
+│   ├── auth.ts            # Vérification JWT
+│   ├── csrf.ts            # Protection CSRF
+│   └── cors.ts            # CORS policy
+├── utils/                 # Utilitaires
+│   ├── db.ts              # Pool PostgreSQL
+│   └── crypto.ts          # Hash bcrypt, JWT
+└── types/                 # TypeScript types
+    └── models.ts          # Interfaces DB
+\end{lstlisting}
+
+\subsubsection{Flux d'Authentification}
+\begin{enumerate}
+  \item Client envoie \texttt{POST /api/auth/login} avec identifiant + mot de passe
+  \item Serveur requête \texttt{SELECT FROM famille WHERE email = ...}
+  \item Vérification du hash bcrypt du mot de passe
+  \item Génération JWT signé (payload : id, email, rôle)
+  \item Client stocke le JWT en localStorage
+  \item Requêtes suivantes incluent \texttt{Authorization: Bearer <JWT>}
+  \item Middleware \texttt{auth.ts} valide la signature JWT à chaque requête
+\end{enumerate}
+
+% =====================================================
+\section{Base de Données}
+
+\subsection{Schéma relationnel}
+
+Le schéma PostgreSQL compte 24 tables réparties en 4 domaines :
+
+\begin{tabular}{lp{7cm}}
+\toprule
+\textbf{Domaine} & \textbf{Tables principales} \\
+\midrule
+Adhérents & \texttt{famille}, \texttt{representant}, \texttt{enfant}, \texttt{contact} \\
+Inscriptions & \texttt{inscription}, \texttt{inscription\_detail}, \texttt{forfait} \\
+Séances & \texttt{session}, \texttt{ceinture}, \texttt{salle} \\
+Tournois & \texttt{tournoi}, \texttt{tournoi\_inscription}, \texttt{categorie} \\
+\bottomrule
+\end{tabular}
+
+\subsection{Exemple : Table \texttt{famille}}
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE famille (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  nom VARCHAR(100) NOT NULL,
+  prenom VARCHAR(100),
+  telephone VARCHAR(20),
+  adresse TEXT,
+  actif BOOLEAN DEFAULT true,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+\end{lstlisting}
+
+\subsection{Intégrité des données}
+
+\subsubsection{Contraintes d'intégrité}
+\begin{itemize}
+  \item \textbf{PRIMARY KEY} : Identifiants uniques
+  \item \textbf{UNIQUE} : Email sans doublon
+  \item \textbf{FOREIGN KEY} : Références parent-enfant (famille → enfant)
+  \item \textbf{CHECK} : Validations (e.g. âge $\geq$ 0)
+  \item \textbf{NOT NULL} : Champs obligatoires
+\end{itemize}
+
+\subsubsection{Transactions ACID}
+
+Les opérations critiques (inscription avec paiement) utilisent \texttt{BEGIN TRANSACTION} :
+
+\begin{lstlisting}[language=SQL]
+BEGIN;
+INSERT INTO inscription (famille_id, forfait_id) VALUES (123, 5);
+INSERT INTO inscription_detail (inscription_id, ...) VALUES (...);
+UPDATE forfait SET places_restantes = places_restantes - 1;
+COMMIT;
+\end{lstlisting}
+
+Ceci garantit que l'inscription soit atomique (tout ou rien) et évite les doublons lors d'accès concurrents.
+
+% =====================================================
+\section{Sécurité}
+
+\subsection{Authentification et Autorisation}
+
+\subsubsection{JWT (JSON Web Token)}
+\begin{itemize}
+  \item Payload : \texttt{\{id, email, role, iat, exp\}}
+  \item Signature : HMAC-SHA256 avec clé secrète serveur
+  \item Durée de vie : 24 heures
+  \item Revocation : Blacklist en base de données (table \texttt{token\_revoked})
+\end{itemize}
+
+\subsubsection{Mot de passe}
+\begin{itemize}
+  \item Hachage : bcrypt avec salt 10 rounds
+  \item Jamais stocké en clair en base de données
+  \item Validation : regex email + longueur minimale 12 caractères
+\end{itemize}
+
+\subsection{Protection contre les attaques}
+
+\begin{tabular}{lll}
+\toprule
+\textbf{Menace} & \textbf{Protection} & \textbf{Implémentation} \\
+\midrule
+SQL Injection & Prepared Statements & \texttt{parameterized queries} \\
+XSS & Content Security Policy & Headers HTTP \\
+CSRF & CSRF Token + SameSite & Middleware \texttt{csrf.ts} \\
+Brute Force & Rate Limiting & Middleware rate-limit \\
+\bottomrule
+\end{tabular}
+
+\subsection{RGPD et Données personnelles}
+
+\begin{itemize}
+  \item Les données des enfants et responsables sont chiffrées en transit (HTTPS/TLS)
+  \item Droit à l'oubli : endpoint \texttt{DELETE /api/families/:id} supprime les données
+  \item Durée de conservation : 3 ans après dernière inscription
+  \item Accord explicite : Checkbox RGPD au moment de l'inscription
+\end{itemize}
+
+% =====================================================
+\section{Flux Métier Clés}
+
+\subsection{Flux 1 : Inscription en ligne}
+
+\begin{enumerate}
+  \item Client accède \texttt{/inscription}
+  \item Formulaire réactif (Vue 3) avec validation côté client
+  \item \texttt{POST /api/inscriptions} avec données (famille, enfants, forfait)
+  \item Serveur valide à nouveau côté serveur (validation défensive)
+  \item Transaction atomique : création famille + enfants + inscription
+  \item Réponse avec confirmation et numéro de dossier
+  \item Email de confirmation envoyé (via service SMTP)
+\end{enumerate}
+
+\subsection{Flux 2 : Gestion du planning}
+
+\begin{enumerate}
+  \item Admin crée une séance : \texttt{POST /api/sessions}
+  \item Données : salle, horaire, ceinture (couleur minimum requise)
+  \item Clients consultent le planning via \texttt{GET /api/sessions/public}
+  \item Les séances sont filtrées par ceinture (sécurité)
+  \item Présence enregistrée : \texttt{PATCH /api/sessions/:id/attendance}
+\end{enumerate}
+
+% =====================================================
+\section{Déploiement et DevOps}
+
+\subsection{Infrastructure}
+
+\begin{itemize}
+  \item \textbf{VPS} : Serveur Linux (Ubuntu 22.04)
+  \item \textbf{Node.js} : Runtime Nitro en tant que service systemd
+  \item \textbf{PostgreSQL} : DBMS en conteneur Docker ou installé natif
+  \item \textbf{Nginx} : Reverse proxy, SSL/TLS, gestion des domaines
+  \item \textbf{DNS} : Domaine \texttt{uspv-judo.fr} pointant vers VPS
+\end{itemize}
+
+\subsection{Processus CI/CD}
+
+\begin{lstlisting}[language=bash]
+# 1. Push sur GitHub
+git push origin main
+
+# 2. GitHub Actions trigger
+# - Lint (ESLint, Prettier)
+# - Unit tests (Vitest)
+# - Build (nuxi build)
+# - Deploy (SSH vers VPS)
+
+# 3. Sur VPS :
+# - Pull du code
+# - npm install
+# - npm run build
+# - Restart du service Node.js
+# - Tests de santé (curl /api/health)
+\end{lstlisting}
+
+\subsection{Monitoring}
+
+\begin{itemize}
+  \item Logs centralisés : stdout → systemd journal
+  \item Alertes : crash du service Node.js via systemd
+  \item Health check : endpoint \texttt{GET /api/health} vérifie la connexion DB
+  \item Backup BD : Script cron \texttt{pg\_dump} quotidien
+\end{itemize}
+
+% =====================================================
+\section{Décisions Architecturales}
+
+\subsection{Pourquoi Nuxt 3 + Nitro ?}
+
+\begin{tabular}{lp{8cm}}
+\toprule
+\textbf{Critère} & \textbf{Justification} \\
+\midrule
+Framework fullstack & Client + API dans un même projet \\
+Routing auto & Directories pages/ et api/ auto-compilées \\
+SSR optionnel & Rendu serveur pour SEO (futur) \\
+TypeScript natif & Type-safety sur client et serveur \\
+Écosystème Vue & Composants + stores Pinia cohérents \\
+\bottomrule
+\end{tabular}
+
+\subsection{Pourquoi PostgreSQL plutôt que NoSQL ?}
+
+\begin{itemize}
+  \item \textbf{Relations complexes} : Familles → Enfants → Inscriptions → Forfaits
+  \item \textbf{Intégrité référentielle} : Les contraintes FOREIGN KEY evitent les données orphelines
+  \item \textbf{Transactions ACID} : Critères pour inscriptions (atomicité)
+  \item \textbf{Requêtes complexes} : JOINs sur plusieurs tables (rapports)
+\end{itemize}
+
+\subsection{Authentification sans session serveur}
+
+\begin{itemize}
+  \item \textbf{JWT stateless} : Pas de stockage de session en mémoire/Redis
+  \item \textbf{Scalabilité} : Chaque serveur peut valider le JWT indépendamment
+  \item \textbf{Revocation} : Table \texttt{token\_revoked} pour déconnexions urgentes
+  \item \textbf{Alternative} : Sessions en Redis (si besoin de contrôle fin ultérieurement)
+\end{itemize}
+
+% =====================================================
+\section{Points Remarquables et Optimisations}
+
+\subsection{Gestion des erreurs}
+
+\begin{lstlisting}[language=bash]
+# Endpoint sécurisé
+POST /api/inscriptions
+  - Validation côté client (feedback immédiat)
+  - Validation côté serveur (défensive)
+  - Try/catch autour de la transaction
+  - Rollback automatique en cas d'erreur
+  - Réponse HTTP 400/500 avec message d'erreur structuré
+\end{lstlisting}
+
+\subsection{Performance}
+
+\begin{itemize}
+  \item \textbf{Indexes PostgreSQL} : Sur email (unique), id famille (FK), dates (range)
+  \item \textbf{Compression} : Gzip des réponses API et assets statiques
+  \item \textbf{Cache client} : Immuabilité des assets (cache-busting par hash)
+  \item \textbf{Lazy loading} : Composants Nuxt chargés à la demande
+\end{itemize}
+
+\subsection{Maintenance et Documentation}
+
+\begin{itemize}
+  \item Code source commenté (pourquoi, pas quoi)
+  \item Schéma BD documenté (diagramme ERD)
+  \item README avec instructions de déploiement
+  \item Changelog Git (commits explicites)
+\end{itemize}
+
+% =====================================================
+\section{Contraintes et Limitations}
+
+\begin{itemize}
+  \item \textbf{VPS unique} : Pas de haute disponibilité (pas de cluster)
+  \item \textbf{Stockage fichiers} : Pas encore de gestion d'image (avatar, scan diploma)
+  \item \textbf{Notifications} : Email uniquement, pas de SMS ni push
+  \item \textbf{Statistiques} : Pas de BI ou analytics avancée
+\end{itemize}
+
+% =====================================================
+\section{Évolutions Futures}
+
+\begin{enumerate}
+  \item \textbf{API mobile} : Application iOS/Android avec authentification JWT partagée
+  \item \textbf{Paiement en ligne} : Intégration Stripe / PayPal pour règlement forfaits
+  \item \textbf{Gestion de fichiers} : Upload avatar, certificat médical, scan identité
+  \item \textbf{Notations} : Système d'évaluation des judokas (suivi progression)
+  \item \textbf{Clustering} : Réplication BD, load balancer, haute disponibilité
+  \item \textbf{Analytics} : Dashboard admin avec rapports d'inscription, taux de présence
+\end{enumerate}
+
+% =====================================================
+\section{Conclusion}
+
+L'architecture du site USPV Judo repose sur une stack moderne et robuste :
+\begin{itemize}
+  \item \textbf{Frontend} : SPA réactive (Nuxt 3 / Vue 3)
+  \item \textbf{Backend} : API RESTful sécurisée (Nitro / JWT)
+  \item \textbf{Données} : Modèle relationnel cohérent (PostgreSQL)
+  \item \textbf{Déploiement} : CI/CD automatisé (GitHub Actions)
+\end{itemize}
+
+Cette architecture garantit la \textbf{scalabilité}, la \textbf{sécurité} et la \textbf{maintenabilité} du système pour accueillir la croissance future du club USPV Judo.
+
+\vspace{2cm}
+
+\begin{flushright}
+  \textit{Mehdi LAFAY}\\
+  \textit{Stage BUT2 Informatique}\\
+  \textit{IUT Belfort-Montbéliard}\\
+  \textit{Juin 2026}
+\end{flushright}
+
+\end{document}

@@ -1,0 +1,19 @@
+# Système
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Node (si jamais ajouté)
+node_modules/
+.env
+
+# Serveur local
+__pycache__/
