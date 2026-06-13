@@ -44,7 +44,7 @@ python3 -m http.server 8800
 ## Outils et Technologies (Technologies du projet USPV Judo)
 
 - **Interface utilisateur (Frontend)** : Nuxt 3 (Vue 3) pour l'affichage, et TailwindCSS pour la décoration et la mise en page.
-- **Logique serveur (Backend)** : Node.js (Nitro) et Express pour gérer les actions en arrière-plan.
+- **Logique serveur (Backend)** : Node.js (Nitro) pour gérer les actions en arrière-plan.
 - **Stockage des données (Base de données)** : PostgreSQL (base structurée de 24 tableaux interconnectés ou schéma relationnel).
 - **Protection et accès (Sécurité)** : jetons de connexion (JWT), brouillage des mots de passe (hachage bcrypt), et blocage des requêtes illégitimes (protection CSRF).
 - **Automatisation des mises à jour (DevOps / CI-CD)** : GitHub Actions pour tester et publier le site automatiquement.

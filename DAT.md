@@ -92,7 +92,7 @@ Le site **USPV Judo** est la plateforme numérique de gestion et de promotion du
 | Domaine | Technologie |
 |---------|-------------|
 | **Frontend** | Nuxt 3 (Vue 3) + TailwindCSS |
-| **Backend** | Node.js (Nitro runtime) + Express middleware |
+| **Backend** | Node.js (Nitro runtime) |
 | **Base de données** | PostgreSQL 14+ (24 tables) |
 | **Sécurité** | JWT + bcrypt + middleware CSRF |
 | **Déploiement** | VPS Linux + GitHub Actions CI/CD |
@@ -174,7 +174,7 @@ nuxt-app/
 
 ---
 
-### Backend (Nitro / Express)
+### Backend (Nitro)
 
 #### Architecture
 
