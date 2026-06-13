@@ -85,7 +85,7 @@ Le site **USPV Judo** est la plateforme numérique de gestion et de promotion du
 - Mettre en place un système d'inscription et de gestion des adhérents
 - Permettre la gestion de l'agenda des séances et tournois
 - Assurer la sécurité des données personnelles (RGPD)
-- Automatiser les processus d'adhésion et de paiement
+- Automatiser les processus d'adhésion et de suivi administratif
 
 ### Périmètre technique
 
@@ -282,7 +282,7 @@ CREATE INDEX idx_famille_actif ON famille(actif);
 
 #### Transactions ACID
 
-Les opérations critiques (inscription + paiement) utilisent `BEGIN TRANSACTION` :
+Les opérations critiques (validation d'inscription) utilisent `BEGIN TRANSACTION` :
 
 ```sql
 BEGIN;
@@ -512,14 +512,14 @@ POST /api/inscriptions
 - **Stockage fichiers** : Pas encore de gestion d'image (avatar, scan diplôme)
 - **Notifications** : Email uniquement, pas de SMS ni push notifications
 - **Statistiques** : Pas de BI ou analytics avancée (Metabase, Grafana…)
-- **Intégration paiement** : Formulaire d'inscription seulement, pas de paiement en ligne (Stripe/PayPal futur)
+- **Paiement** : Formulaire d'inscription seulement, les paiements s'effectuent physiquement au club.
 
 ---
 
 ## Évolutions Futures
 
 1. **API mobile** — Application iOS/Android avec authentification JWT partagée
-2. **Paiement en ligne** — Intégration Stripe / PayPal pour règlement forfaits
+2. **Refonte de l'espace famille** — Ajout de fonctionnalités de suivi de progression plus poussées.
 3. **Gestion de fichiers** — Upload avatar, certificat médical, scan identité (S3)
 4. **Système de notations** — Évaluation des judokas, suivi de progression
 5. **Clustering et HA** — Réplication BD, load balancer, haute disponibilité
