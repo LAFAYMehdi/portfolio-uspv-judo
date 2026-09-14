@@ -462,7 +462,7 @@ pre.code code { display: block; min-width: max-content; }
 .bilan-grid { display: flex; flex-direction: column; gap: 26px; }
 .bilan-block { border-left: 3px solid var(--blk-c); padding-left: 16px; }
 .bb-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
-.bb-head h3 { font-size: 16px; font-weight: 700; margin: 0; }
+.bb-head h2, .bb-head h3 { font-size: 16px; font-weight: 700; margin: 0; }
 .recap { list-style: none; padding: 0; margin: 0 0 16px; }
 .recap li { padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; }
 .recap li:last-child { border-bottom: none; }

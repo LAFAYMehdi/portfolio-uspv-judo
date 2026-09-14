@@ -43,14 +43,14 @@ window.PORTFOLIO = {
       `<div class="photo-wrap">
          <picture>
            <source srcset="assets/img/photo-enfant-200.webp 1x, assets/img/photo-enfant.webp 2x" type="image/webp">
-           <img src="assets/img/photo-enfant.jpg" alt="Moi en judoka, il y a très longtemps" width="200" height="319" loading="lazy" decoding="async" />
+           <img src="assets/img/photo-enfant.jpg" alt="Moi en judoka, il y a très longtemps" width="200" height="319" loading="lazy" decoding="async">
          </picture>
          <p class="photo-caption">Une photo venant d'une époque lointaine, très lointaine...</p>
        </div>
        <p>Ce site présente les <strong>savoir-faire</strong> que j'ai mobilisés et développés
        pendant mon <strong>stage de 2ᵉ année de BUT Informatique</strong>, réalisé du
        <strong>7 avril au 5 juin 2026</strong> pour le club <strong>USPV Judo</strong>
-       (Pont-de-Roide-Vermondans) — projet récompensé par la <strong>meilleure note de la promotion avec 17,80 / 20</strong> (sur 46 étudiants). Il s'organise en trois volets —
+       (Pont-de-Roide-Vermondans). Il s'organise en trois volets —
        <em>technique</em>, <em>suivi de projet</em> et <em>intégration en entreprise</em> —
        chacun illustré par des <strong>traces concrètes</strong> issues du projet et
        complété par un <strong>bilan</strong> qui analyse mon niveau d'expertise.</p>

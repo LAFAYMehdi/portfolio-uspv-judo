@@ -294,7 +294,7 @@
 
     return `<div class="trace-head">
               <span class="trace-num">${sp.number}</span>
-              <h3 class="trace-title">${esc(sp.title)}</h3>
+              <h2 class="trace-title">${esc(sp.title)}</h2>
               <span class="domain-tag" style="color:${sp.domain.color}">${esc(sp.domain.label)}</span>
             </div>
             <div class="block">
@@ -338,22 +338,24 @@
       }).join("");
       return `<div class="bilan-block" style="--blk-c:${b.color}">
                 <div class="bb-head">
-                  <h3>${esc(b.title)}</h3>
+                  <h2>${esc(b.title)}</h2>
                   <span class="domain-tag" style="color:${b.color}">${esc(b.domain)}</span>
                 </div>
                 <ul class="recap">${recap}</ul>
                 ${gauge(sp.scale, b.before, b.after)}
-                <div class="justif">${tk(b.justif)}</div>
+                <div class="lbl">Justification de la progression</div>
+                <p class="justif">${tk(b.justif)}</p>
               </div>`;
     }).join("");
-    return `<p class="bilan-intro">${tk(sp.intro)}</p><div class="bilan-grid">${blocks}</div>`;
+    return `${sp.intro ? `<p class="bilan-intro">${tk(sp.intro)}</p>` : ""}
+      <div class="bilan-grid">${blocks}</div>`;
   }
 
   /* ============================================== EN-TÊTE DE PAGE (commun) */
   function pageHead(data) {
     return `<div class="page-head">
         <div class="page-kicker">${esc(data.kicker)}</div>
-        <h2 class="page-title">${esc(data.title)}</h2>
+        <h1 class="page-title">${esc(data.title)}</h1>
         ${data.summary ? `<p class="page-summary">${tk(data.summary)}</p>` : ""}
       </div>`;
   }
@@ -380,23 +382,23 @@
 
       <div class="cols-2">
         <div class="col">
-          <h3 class="section-title">${esc(a.entreprise.title)}</h3>
+          <h2 class="section-title">${esc(a.entreprise.title)}</h2>
           ${tk(a.entreprise.html)}
         </div>
         <div class="col">
-          <h3 class="section-title">${esc(a.sujet.title)}</h3>
+          <h2 class="section-title">${esc(a.sujet.title)}</h2>
           ${tk(a.sujet.html)}
         </div>
       </div>
 
       <div class="sf-block">
-        <h3 class="section-title">${esc(a.savoirFaire.title)}</h3>
+        <h2 class="section-title">${esc(a.savoirFaire.title)}</h2>
         <p class="muted">${tk(a.savoirFaire.intro)}</p>
         <div class="sf-groups">${groups}</div>
       </div>
 
       <div class="resources-block">
-        <h3 class="section-title">Ressources du projet</h3>
+        <h2 class="section-title">Ressources du projet</h2>
         <p class="muted">Documents de référence, plannings et suivi de projet.</p>
 
         <div class="res-groups">
