@@ -4,7 +4,7 @@ Portfolio de stage de **Mehdi LAFAY** | BUT Informatique — 2ᵉ année | IUT B
 
 **Stage du 7 avril au 5 juin 2026** pour le club **USPV Judo** (Pont-de-Roide-Vermondans).
 
-> 🏆 **Distinction :** Projet de stage de deuxième année récompensé par la **meilleure note de la promotion avec 17,80 / 20** (sur une promotion de 46 étudiants).
+> **Distinction :** Projet de stage de deuxième année récompensé par la **meilleure note de la promotion avec 17,80 / 20** (sur une promotion de 46 étudiants).
 
 ---
 

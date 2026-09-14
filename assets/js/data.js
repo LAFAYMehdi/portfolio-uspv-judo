@@ -52,9 +52,8 @@ window.PORTFOLIO = {
        chacun illustré par des <strong>traces concrètes</strong> issues du projet et
        complété par un <strong>bilan</strong> qui analyse mon niveau d'expertise.</p>
        <div class="distinction-card">
-         <span class="distinction-icon">🏆</span>
          <div class="distinction-text">
-           <strong>Major de promotion :</strong> Pour ce projet de stage de deuxième année, j'ai obtenu la <strong>meilleure note sur une promotion de 46 étudiants avec 17,80 / 20</strong>.
+           <strong>Distinction :</strong> Pour ce projet de stage de deuxième année, j'ai obtenu la <strong>meilleure note sur une promotion de 46 étudiants avec 17,80 / 20</strong>.
          </div>
        </div>`,
 

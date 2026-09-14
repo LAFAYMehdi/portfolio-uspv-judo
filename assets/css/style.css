@@ -492,16 +492,12 @@ pre.code code { display: block; min-width: max-content; }
 .distinction-card {
   margin: 18px 0 16px;
   padding: 12px 16px;
-  background: #fffdf5;
-  border: 1px solid #f1e2a0;
-  border-left: 4px solid var(--accent);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  background: #fbfbfb;
+  border: 1px solid var(--line-2);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
 }
-.distinction-icon { font-size: 24px; line-height: 1; flex-shrink: 0; }
-.distinction-text { font-size: 14.5px; line-height: 1.5; color: var(--txt); }
+.distinction-text { font-size: 14px; line-height: 1.5; color: var(--txt); }
 
 /* ============================================================ PIED */
 .site-foot { border-top: 1px solid var(--line); }
