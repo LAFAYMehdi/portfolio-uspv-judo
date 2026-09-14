@@ -44,13 +44,19 @@ window.PORTFOLIO = {
          <img src="assets/img/photo-enfant.jpg" alt="Moi en judoka, il y a très longtemps" style="width: 100%; border-radius: 6px; border: 1px solid var(--line);" />
          <p style="font-size: 11px; color: var(--faint); font-style: italic; margin-top: 6px; line-height: 1.3;">Une photo venant d'une époque lointaine, très lointaine...</p>
        </div>
-       Ce site présente les <strong>savoir-faire</strong> que j'ai mobilisés et développés
+       <p>Ce site présente les <strong>savoir-faire</strong> que j'ai mobilisés et développés
        pendant mon <strong>stage de 2ᵉ année de BUT Informatique</strong>, réalisé du
        <strong>7 avril au 5 juin 2026</strong> pour le club <strong>USPV Judo</strong>
-       (Pont-de-Roide-Vermondans). Il s'organise en trois volets —
+       (Pont-de-Roide-Vermondans) — projet récompensé par la <strong>meilleure note de la promotion avec 17,80 / 20</strong> (sur 46 étudiants). Il s'organise en trois volets —
        <em>technique</em>, <em>suivi de projet</em> et <em>intégration en entreprise</em> —
        chacun illustré par des <strong>traces concrètes</strong> issues du projet et
-       complété par un <strong>bilan</strong> qui analyse mon niveau d'expertise.`,
+       complété par un <strong>bilan</strong> qui analyse mon niveau d'expertise.</p>
+       <div class="distinction-card">
+         <span class="distinction-icon">🏆</span>
+         <div class="distinction-text">
+           <strong>Major de promotion :</strong> Pour ce projet de stage de deuxième année, j'ai obtenu la <strong>meilleure note sur une promotion de 46 étudiants avec 17,80 / 20</strong>.
+         </div>
+       </div>`,
 
     archTitle: "L'architecture de la plateforme réalisée",
 

@@ -357,7 +357,7 @@
     }).join("");
 
     return `${pageHead(a)}
-      <p class="lead">${tk(a.intro)}</p>
+      <div class="lead">${tk(a.intro)}</div>
 
       <div class="arch">
         <div class="arch-title">${esc(a.archTitle)}</div>
