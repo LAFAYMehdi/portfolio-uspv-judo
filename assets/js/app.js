@@ -92,14 +92,25 @@
            <source srcset="assets/img/logo.webp" type="image/webp">
            <img class="logo" src="assets/img/logo.png" alt="Logo USPV Judo" width="38" height="38" fetchpriority="high">
          </picture>
-         <div class="id-block">
-           <span class="id-name">${id.firstName} <span class="accent">${id.lastName}</span></span>
-           <span class="id-sub">${id.formation} · Portfolio de stage</span>
-         </div>
-         <div class="id-contacts">
-           <a class="pill" href="mailto:${id.email}">${I.mail}<span>${id.email}</span></a>
-           <a class="pill hide-sm" href="${id.siteUrl}" target="_blank" rel="noopener">${I.link}<span>${id.site}</span></a>
-         </div>
+          <div class="id-block">
+            <span class="id-name">${id.firstName} <span class="accent">${id.lastName}</span></span>
+            <span class="id-sub">
+              <span class="id-sub-full">${id.formation} · Portfolio de stage</span>
+              <span class="id-sub-short">BUT 2 Info · Stage</span>
+            </span>
+          </div>
+          <div class="id-contacts">
+            <a class="pill" href="mailto:${id.email}" title="${id.email}">
+              ${I.mail}
+              <span class="pill-full">${id.email}</span>
+              <span class="pill-short">Email</span>
+            </a>
+            <a class="pill" href="${id.siteUrl}" target="_blank" rel="noopener" title="${id.site}">
+              ${I.link}
+              <span class="pill-site-full">${id.site}</span>
+              <span class="pill-site-short">Site</span>
+            </a>
+          </div>
        </div>`;
   }
 

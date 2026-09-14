@@ -40,12 +40,12 @@ window.PORTFOLIO = {
     kicker: "Portfolio de stage · BUT 2",
     title: "Bienvenue sur mon portfolio",
     intro:
-      `<div style="float: right; margin: 0 0 15px 20px; width: 200px; text-align: center;">
+      `<div class="photo-wrap">
          <picture>
            <source srcset="assets/img/photo-enfant-200.webp 1x, assets/img/photo-enfant.webp 2x" type="image/webp">
-           <img src="assets/img/photo-enfant.jpg" alt="Moi en judoka, il y a très longtemps" width="200" height="319" loading="lazy" decoding="async" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line);" />
+           <img src="assets/img/photo-enfant.jpg" alt="Moi en judoka, il y a très longtemps" width="200" height="319" loading="lazy" decoding="async" />
          </picture>
-         <p style="font-size: 11px; color: var(--faint); font-style: italic; margin-top: 6px; line-height: 1.3;">Une photo venant d'une époque lointaine, très lointaine...</p>
+         <p class="photo-caption">Une photo venant d'une époque lointaine, très lointaine...</p>
        </div>
        <p>Ce site présente les <strong>savoir-faire</strong> que j'ai mobilisés et développés
        pendant mon <strong>stage de 2ᵉ année de BUT Informatique</strong>, réalisé du
