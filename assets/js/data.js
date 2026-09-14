@@ -42,7 +42,7 @@ window.PORTFOLIO = {
     intro:
       `<div style="float: right; margin: 0 0 15px 20px; width: 200px; text-align: center;">
          <picture>
-           <source srcset="assets/img/photo-enfant.webp" type="image/webp">
+           <source srcset="assets/img/photo-enfant-200.webp 1x, assets/img/photo-enfant.webp 2x" type="image/webp">
            <img src="assets/img/photo-enfant.jpg" alt="Moi en judoka, il y a très longtemps" width="200" height="319" loading="lazy" decoding="async" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line);" />
          </picture>
          <p style="font-size: 11px; color: var(--faint); font-style: italic; margin-top: 6px; line-height: 1.3;">Une photo venant d'une époque lointaine, très lointaine...</p>

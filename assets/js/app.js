@@ -558,11 +558,14 @@
 
   /* ================================================================ INIT */
   function init() {
-    renderHeader();
-    renderTopNav();
-    renderFooter();
     window.addEventListener("hashchange", render);
-    render();
+    const hash = window.location.hash;
+    if (hash && hash !== "#accueil" && hash !== "#") {
+      render();
+    } else {
+      document.querySelectorAll(".tn-item").forEach((a) =>
+        a.classList.toggle("active", a.dataset.page === "accueil"));
+    }
     document.title = "Portfolio — USPV Judo";
   }
 
