@@ -88,7 +88,10 @@
     const id = P.identity;
     $("#header").innerHTML =
       `<div class="hd-inner">
-         <img class="logo" src="assets/img/logo.png" alt="Logo USPV Judo">
+         <picture>
+           <source srcset="assets/img/logo.webp" type="image/webp">
+           <img class="logo" src="assets/img/logo.png" alt="Logo USPV Judo" width="38" height="38" fetchpriority="high">
+         </picture>
          <div class="id-block">
            <span class="id-name">${id.firstName} <span class="accent">${id.lastName}</span></span>
            <span class="id-sub">${id.formation} · Portfolio de stage</span>

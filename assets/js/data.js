@@ -41,7 +41,10 @@ window.PORTFOLIO = {
     title: "Bienvenue sur mon portfolio",
     intro:
       `<div style="float: right; margin: 0 0 15px 20px; width: 200px; text-align: center;">
-         <img src="assets/img/photo-enfant.jpg" alt="Moi en judoka, il y a très longtemps" style="width: 100%; border-radius: 6px; border: 1px solid var(--line);" />
+         <picture>
+           <source srcset="assets/img/photo-enfant.webp" type="image/webp">
+           <img src="assets/img/photo-enfant.jpg" alt="Moi en judoka, il y a très longtemps" width="200" height="319" loading="lazy" decoding="async" style="width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line);" />
+         </picture>
          <p style="font-size: 11px; color: var(--faint); font-style: italic; margin-top: 6px; line-height: 1.3;">Une photo venant d'une époque lointaine, très lointaine...</p>
        </div>
        <p>Ce site présente les <strong>savoir-faire</strong> que j'ai mobilisés et développés
