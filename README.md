@@ -25,6 +25,15 @@ Chaque page affiche **une sous-page (trace ou bilan) à la fois** via une naviga
 
 ---
 
+## Démonstrateurs en ligne (GitHub Pages & Production)
+
+- **Vitrine publique (GitHub Pages)** : [https://lafaymehdi.github.io/AppWeb_USPV-Judo/](https://lafaymehdi.github.io/AppWeb_USPV-Judo/)
+- **Espace de Gestion CRM (Mode Démo interactif)** : [https://lafaymehdi.github.io/AppWeb_USPV-Judo/admin/](https://lafaymehdi.github.io/AppWeb_USPV-Judo/admin/)
+- **Site officiel en production** : [https://uspv-judo.fr](https://uspv-judo.fr)
+- **Espace de gestion en production** : [https://gestion.uspv-judo.fr/dossiers](https://gestion.uspv-judo.fr/dossiers)
+
+---
+
 ## Lancer en local
 
 Site statique, sans dépendance ni build.
