@@ -8,44 +8,6 @@ Portfolio de stage de **Mehdi LAFAY** | BUT Informatique — 2ᵉ année | IUT B
 
 ---
 
-## 📸 Aperçu visuel immédiat — Stack Node.js / Vue.js / PostgreSQL
-
-Un aperçu immédiat de la réalisation pour les recruteurs techniques : le site public, l'espace famille et le back-office d'administration ont été conçus et déployés de bout en bout en autonomie.
-
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│  🥋 USPV JUDO · Administration & Gestion du Club              [Session JWT : Connecté] │
-├──────────────────┬─────────────────────────────────────────────────────────────────────┤
-│  TABLEAU DE BORD │  📊 184 Adhérents actifs   ⏳ 42 Pré-inscriptions   ✅ 98% Conformes │
-│  ─────────────── │ ─────────────────────────────────────────────────────────────────── │
-│  📁 Dossiers     │  Dernières pré-inscriptions soumises :                              │
-│  👥 Familles     │  • L. Martin  · Poussins  · [Certificat OK] · [Paiement CB]     [✓] │
-│  🥋 Cours        │  • E. Dubois  · Benjamins · [À vérifier]    · [Chèque reçu]     [👁] │
-│  💶 Règlements   │  • T. Bernard · Minimes   · [Certificat OK] · [Pass'Sport OK]   [✓] │
-│  ⚙️ Paramètres   │ ─────────────────────────────────────────────────────────────────── │
-│  🗄️ BDD Postgres │  Base PostgreSQL : 24 tables · Transactions ACID · Intégrité CASCADE │
-└──────────────────┴─────────────────────────────────────────────────────────────────────┘
-```
-
-### Points clés de validation technique :
-- **Front-end réactif (Nuxt 3 / Vue 3 / TailwindCSS)** : Interface d'administration pensée pour des utilisateurs non informaticiens (bénévoles du club) avec validation des dossiers en un clic et export automatisé vers la FFJDA.
-- **Back-end sécurisé (Node.js Nitro)** : Authentification par jetons JWT, chiffrement des mots de passe avec bcrypt, protection CSRF systématique et découplage strict des privilèges.
-- **Base de données relationnelle (PostgreSQL 16)** : Schéma de **24 tables relationnelles** modélisant l'intégralité du club (utilisateurs, familles, dossiers, adhérents, cours, paiements, présences) avec transactions atomiques et conformité RGPD.
-
-```mermaid
-erDiagram
-    UTILISATEUR ||--o| FAMILLE : "compte associe"
-    FAMILLE ||--|{ ADHERENT : "inscrits"
-    FAMILLE ||--|{ DOSSIER : "soumet"
-    DOSSIER ||--|{ PAIEMENT : "regle"
-    DOSSIER ||--|{ INSCRIPTION_COURS : "comprend"
-    ADHERENT ||--|{ INSCRIPTION_COURS : "participe"
-    COURS ||--|{ INSCRIPTION_COURS : "accueille"
-    COURS ||--o| CRENEAU : "planifie"
-```
-
----
-
 ## À propos
 
 Ce portfolio présente les **savoir-faire techniques** et **savoir-faire généraux** développés lors de mon stage de conception et développement du site web du club USPV Judo. Pour ce projet de stage de deuxième année, j'ai obtenu la **meilleure note de la promotion avec 17,80 / 20** (sur une promotion de 46 étudiants).
