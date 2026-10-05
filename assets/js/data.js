@@ -63,7 +63,7 @@ window.PORTFOLIO = {
        <div class="showcase-cta" style="margin: 2rem 0; padding: 2rem; background: #ffffff; border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); color: var(--txt); position: relative; z-index: 10;">
          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
            <div style="display: flex; align-items: center; gap: 0.5rem;">
-             <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #22c55e;"></span>
+             
              <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted);">Démonstrateur interactif · GitHub Pages</span>
            </div>
            <span style="font-size: 0.75rem; background: #f3f3f0; border: 1px solid var(--line); color: var(--muted); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 600;">Données simulées</span>
