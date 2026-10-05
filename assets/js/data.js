@@ -58,6 +58,31 @@ window.PORTFOLIO = {
          <div class="distinction-text">
            <strong>Distinction :</strong> Pour ce projet de stage de deuxième année, j'ai obtenu la <strong>meilleure note sur une promotion de 46 étudiants avec 17,80 / 20</strong>.
          </div>
+       </div>
+       <div class="showcase-cta" style="margin: 1.5rem 0 2rem; padding: 1.5rem; background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%); border: 2px solid #6366f1; border-radius: 14px; box-shadow: 0 12px 30px -5px rgba(99, 102, 241, 0.35); color: #ffffff;">
+         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+           <div style="display: flex; align-items: center; gap: 0.5rem;">
+             <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 10px #22c55e;"></span>
+             <span style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #a5b4fc;">Démonstrateur interactif · GitHub Pages</span>
+           </div>
+           <span style="font-size: 0.8rem; background: rgba(99, 102, 241, 0.25); border: 1px solid #818cf8; color: #e0e7ff; padding: 0.2rem 0.6rem; border-radius: 6px; font-weight: 600;">Simulation Données Réelles</span>
+         </div>
+         <h2 style="margin: 0 0 0.5rem; font-size: 1.35rem; font-weight: 800; color: #ffffff; line-height: 1.3;">Tester l'Espace de Gestion CRM &amp; le Site Vitrine</h2>
+         <p style="margin: 0 0 1.25rem; font-size: 0.95rem; line-height: 1.5; color: #cbd5e1; max-width: 680px;">
+           L'intégralité de la plateforme réalisée est hébergée et explorable en ligne : naviguez sur la <strong>vitrine publique</strong> et testez le <strong>back-office d'administration (CRM)</strong> avec un jeu complet de données de test (dossiers adhérents, familles, planning des cours avec enseignants, boutique officielle, trésorerie).
+         </p>
+         <div style="display: flex; flex-wrap: wrap; gap: 0.85rem; align-items: center;">
+           <a href="https://lafaymehdi.github.io/AppWeb_USPV-Judo/admin/dossiers/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.4rem; background: #4f46e5; color: #ffffff; font-weight: 800; font-size: 1rem; border-radius: 8px; text-decoration: none; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.45); border: 1px solid #818cf8;">
+             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 3v18"></path><path d="M14 9h5"></path><path d="M14 15h5"></path></svg>
+             Accéder au CRM (Admin Démo) →
+           </a>
+           <a href="https://lafaymehdi.github.io/AppWeb_USPV-Judo/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.2rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); color: #ffffff; font-weight: 700; font-size: 0.95rem; border-radius: 8px; text-decoration: none;">
+             Voir le Site Vitrine
+           </a>
+           <a href="https://uspv-judo.fr" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.85rem 1rem; color: #94a3b8; font-weight: 600; font-size: 0.9rem; text-decoration: underline;">
+             Site officiel en production (uspv-judo.fr) ↗
+           </a>
+         </div>
        </div>`,
 
     archTitle: "L'architecture de la plateforme réalisée",
